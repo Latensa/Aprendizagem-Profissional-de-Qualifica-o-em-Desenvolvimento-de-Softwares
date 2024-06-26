@@ -1,3 +1,4 @@
+/*06. Preenchendo as tabelas*/
 insert into cliente(codigo, nome, endereco, cpf, telefone) values(333, 'Jose da Silva', 'rua leopoldo', 99988877766, 99888888888)
 insert into compra(codigo, quantidade_produtos) values(666, 12)
 insert into funcionario(codigo ,nome ,cpf ,telefone) values(777, 'Pedro de Algo', 09095409321, 61996713665) 
