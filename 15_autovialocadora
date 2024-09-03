@@ -1,0 +1,41 @@
+create database autovialocadora;
+use autovialocadora
+
+/*01. Criando Banco de Dados - Arquivos*/
+/*Criando Tabelas*/
+create table Marcas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL UNIQUE
+);
+create table Modelos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    id_marca INT,
+    FOREIGN KEY  (id_marca) REFERENCES Marcas(id)
+);
+create table Veiculos (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    placa VARCHAR(10) NOT NULL UNIQUE,
+    ano INT NOT NULL,
+    cor VARCHAR(20),
+    id_modelo INT,
+    status ENUM('Disponível', 'Locado', 'Em Manutenção') DEFAULT 'Disponível',
+    FOREIGN KEY (id_modelo) REFERENCES Modelos(id)
+);
+create table Contratos (
+	id INT auto_increment primary key,
+    id_clientes INT,
+    id_veiculos INT,
+    data_inicio DATE NOT NULL, 
+    data_fim DATE, 
+    valor_total DECIMAL(10, 2),
+    FOREIGN KEY (id_clientes) REFERENCES Clientes(id),
+    FOREIGN KEY (id_veiculos) REFERENCES Veiculos(id)
+);
+create table Pagamentos (
+    id INT auto_increment PRIMARY KEY,
+    id_contrato INT,
+    data_pagamento DATE NOT NULL,
+    valor DECIMAL(10, 2) NOT NULL,
+    metodo ENUM('Dinheiro', 'Cartão de Crédito', 'Transferência')
+);
